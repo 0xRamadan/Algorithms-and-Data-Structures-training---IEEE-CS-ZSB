@@ -1,0 +1,188 @@
+# Name: Mahmoud Abdallah Hassan
+
+# Calculate time complexities for day 1,2,3 problems.
+
+Day-1:
+Task name: Die Roll - Time Complexity: O(1)
+Task name: leftRotate - Time Complexity: O(n)
+Day - 2:
+Task name: A. Ksenia and Pan Scales - Time Complexity: O(n)
+Task name: find Merge point of two lists - Time Complexity: O(d*n) >>>> O(n)
+Day - 3:
+Task: A. BowWow and the Timetable - Time Complexity: O(n^2)
+Task: Largest Rectangle: Time Complexity: O(n)
+
+
+
+Day-1: 
+
+Task name: Die Roll
+	------  ------------ ------------ ---------- ----------- --------- ---------
+
+	from fractions import Fraction
+
+	l = list(map(int, input().split()))       # takes constant time - 1
+	max_n = max(l)		   # takes constant time - 1
+	p = Fraction(6-(max_n-1))/6	   # takes constant time - 1
+	if p == 1:            			.	
+    	     print('1/1')				.
+	elif p == 'zero':			.
+    	     print('0/1')
+	else:
+   	     print(p)
+	input('press enter to exit...')	  # takes constant time - 1
+	
+
+	------  ------------ ------------ ---------- ----------- --------- ---------
+  Time Complexity: O(1)
+
+
+
+Task name: leftRotate
+	------  ------------ ------------ ---------- -----------
+
+def rotateLeft(d, arr):
+    # Write your code here
+    for i in range(d):                             # time complexity: d+1
+        arr.append(arr[i]) 	       # time complexity: d
+    for i in range(d): 		       # time complexity: d+1
+        arr.remove(arr[0])    	       # time complexity: d
+        			       # 
+    return arr			
+if __name__ == '__main__':
+
+
+    #fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    first_multiple_input = input().rstrip().split()    # constant time
+
+    n = int(first_multiple_input[0])
+
+    d = int(first_multiple_input[1])
+
+    arr = list(map(int, input().rstrip().split()))
+
+    result = rotateLeft(d, arr)
+    print(' '.join(map(str, result)))
+    input('press enter to exit...')
+    # fptr.write(' '.join(map(str, result)))
+    # fptr.write('\n')
+
+    # fptr.close()
+
+
+	------  ------------ ------------ ---------- -----------
+Time Complexity: O(n)
+
+
+	---------------------------------------------------------------------------------------------
+
+Day - 2:
+Task name: A. Ksenia and Pan Scales - Time Complexity: O(n)
+
+
+
+
+
+
+Task name: A. Ksenia and Pan Scales
+	------  ------------ ------------ ---------- -----------
+
+def check(l, r):
+    if len(left_scale) == len(right_scale):		# 1
+            print(''.join(left_scale)+'|'+''.join(right_scale))
+    else:					# 1
+        print('Impossible')
+
+if __name__ == "__main__":
+    l = list(map(str, input().rstrip()))
+    # finding the delimiter
+    delimiter = l.index('|')			# 1
+    # slicing to left list and right list
+    left_scale = l[:delimiter]
+    right_scale = l[delimiter+1:]
+    # taking the weight from the user
+    weight = list(map(str, input().rstrip()))
+    # putting the weight one by one into left or right
+    for i in weight:				# n+1
+        if  len(left_scale) > len(right_scale):		# n
+            right_scale.append(i)
+        else:
+            left_scale.append(i)
+    # a func to check if The scales is in equilibrium
+    check(left_scale, right_scale)			# 1
+			
+		------  ------------ ------------ ---------- -----------
+Time Complexity: O(n)
+
+
+Day-3:
+Task: A. BowWow and the Timetable
+
+# taking input from the user as a string
+s = input()
+while s:				# n
+    last1 = -1
+    count_1s = 0            # 01234 # length = 5
+    for i in range(len(s)): # 10100		#n*n
+        if s[i] == '1':     # 43210
+            if last1 == -1:
+                last1 = i
+            count_1s += 1
+        
+    # special handling zero 
+    if count_1s == 0:
+        print('0')
+        break
+
+    last1 = len(s) - last1 - 1
+
+    # handling odd power
+    if last1 % 2 == 1:
+        last1 += 1
+        count_1s = 0
+
+    last1 = last1 / 2
+
+    # check if there are ones
+    if count_1s > 1:
+        last1 += 1
+    
+    print(int(last1))
+    break
+		------  ------------ ------------ ---------- -----------
+Time Complexity: O(n^2)
+
+Task: Largest Rectangle: Time Complexity: O(n)
+
+def largestRectangle(h):
+    stack = []
+    area = i = 0
+    h.append(0)
+    while i < len(h):  				# n
+        if not stack or h[i] > h[stack[-1]]:
+            stack.append(i)
+            i += 1
+        else:
+            top = stack.pop()
+            area = max(area, h[top] * (i - stack[-1] - 1 if stack else i))
+    return area
+
+
+if __name__ == '__main__':
+    #fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    h = list(map(int, input().rstrip().split()))
+
+    result = largestRectangle(h)
+
+    print(result)
+
+    #fptr.write(str(result) + '\n')
+
+    #fptr.close()
+
+
+
