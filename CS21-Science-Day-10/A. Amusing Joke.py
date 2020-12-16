@@ -1,7 +1,7 @@
 # name: Mahmoud Abdallah Hassan
 # mail: mahmoud.abdallah@ieee-zsb.org
 # link: https://codeforces.com/problemset/problem/141/A
-# time complexity: O(1) 
+# time complexity: O(nlog(n)) 
 
 def canBePremuted(guestName, hostName, letter):
 
