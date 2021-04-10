@@ -3,7 +3,7 @@
 # Name: Mahmoud Abdallah Hassan
 # GitHub link: https://github.com/RaymondReddigton
 # problem link: https://codeforces.com/contest/1009/problem/B?f0a28=1
-# Time Complexity: 
+# Time Complexity: O(n)
 #
 #
 
@@ -19,8 +19,5 @@ if indexOffirstTwo == -1:
 temp = tenaryString[:indexOffirstTwo]
 numberOfZeros = temp.count('0')
 
-result = '0'*numberOfOnes + '1'*numberOfOnes + tenaryString[indexOffirstTwo:].replace('1', '')
+result = '0'*numberOfZeros + '1'*numberOfOnes + tenaryString[indexOffirstTwo:].replace('1', '')
 print(result)
-
-
-input('press enter to exit...')
